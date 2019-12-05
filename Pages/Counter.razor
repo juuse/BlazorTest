@@ -1,13 +1,42 @@
-﻿@page "/counter"
-
-<h1>Counter</h1>
+﻿@page "/Reservations"
+<!--<h1>Counter</h1>
 
 <p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<h3>Component</h3>
+<input @bind="message" @bind:event="oninput" />
+<p>message: @message</p>
+-->
+    <p>
+        Group Size
+        <br />
+        <input placeholder="Group Size" @bind="groupSize" type="number" min="1" @bind:event="oninput" />
+        <br /> Date
+        <EditForm Model="@resdate">
+            <InputDate @bind-Value="@resdate" @bind-Value:format="dd/MM/yyyy" />
+        </EditForm>
+        Time
+        <br />
+        <input type="time" name="Reservation Time" min="09:00" max="21:00" @bind="restime" @bind:event="oninput" />
+        <br /> E-Mail
+        <br /><input @bind="email" @bind:event="oninput" type="text" />
+        <br /> Phone Number
+        <br /><input @bind="phonenum" @bind:event="oninput" type="text" />
+    </p>
+
+
 @code {
     private int currentCount = 0;
+    int groupSize;
+    string email;
+    string phonenum;
+    TimeSpan restime;
+
+    DateTime resdate { get; set; } = DateTime.Today;
+
+    DateTime date = DateTime.Today;
 
     [Parameter]
     public int IncrementAmount { get; set; } = 1;

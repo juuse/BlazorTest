@@ -1,7 +1,50 @@
 ﻿@page "/"
 
-<h1>Hi, friends!</h1>
+@inherits FoodStuff
 
-Does this work well?
+<img src="https://i.imgur.com/KaFC9Jd.png" alt="Undercooked Logo">
 
-<Counter IncrementAmount ="10"/>
+<h1>Welcome to Undercooked!</h1>
+A simple restauraunt management system.
+
+<!--<Counter IncrementAmount ="10"/>
+
+<ul>
+    @foreach (var food in ings)
+    {
+        <li>
+            @food.IngredientID
+            @food.IngredientName
+            @food.count
+        </li>
+    }
+
+</ul>
+    -->
+@if (ings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IngredientID</th>
+                <th>IngredientName</th>
+                <th>Ingredient Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var food in ings)
+            {
+                <tr>
+                    <td>@food.IngredientID</td>
+                    <td>@food.IngredientName</td>
+                    <td>@food.count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+    <button class="btn btn-primary" @onclick="populateList">Creates List</button>

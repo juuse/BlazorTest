@@ -1,0 +1,28 @@
+﻿@page "/management"
+@inherits TodoItem
+
+<h1>Management (@todos.Count(todo => !todo.IsDone))</h1>
+
+<ul>
+    @foreach (var todo in todos)
+    {
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            <input @bind="todo.Title" />
+        </li>
+    }
+
+</ul>
+
+<input placeholder="Something todo" @bind="newTodo" />
+<button @onclick="AddTodo">Add todo</button>
+<ul>
+    <button>Total Revenue</button>
+    <button>Total Expenses</button>
+    <output placeholder="blank" />
+</ul>
+
+
+@code {
+   
+}
