@@ -1,38 +1,56 @@
 ﻿@page "/Reservations"
-<!--<h1>Counter</h1>
+@inherits ResItem
 
-<p>Current count: @currentCount</p>
+<h1>Reservations</h1>
+<p>
+    Group Size
+    <br />
+    <input placeholder="Group Size" @bind="groupSize" type="number" min="1" @bind:event="oninput" />
+    <br /> Date
+    <EditForm Model="@resdate">
+        <InputDate @bind-Value="@resdate" @bind-Value:format="dd/MM/yyyy" />
+    </EditForm>
+    Time
+    <br />
+    <input type="time" name="Reservation Time" min="09:00" max="21:00" @bind="restime" @bind:event="oninput" />
+    <br /> E-Mail
+    <br /><input placeholder="example@email.com" @bind="email" @bind:event="oninput" type="text" />
+    <br /> Phone Number
+    <br /><input placeholder="(000)111-2222" @bind="phonenum" @bind:event="oninput" type="text" />
+    <br />
+    <br /><button class="btn btn-primary" @onclick="saveRes">Book Time</button>
+</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-<h3>Component</h3>
-<input @bind="message" @bind:event="oninput" />
-<p>message: @message</p>
--->
-    <p>
-        Group Size
-        <br />
-        <input placeholder="Group Size" @bind="groupSize" type="number" min="1" @bind:event="oninput" />
-        <br /> Date
-        <EditForm Model="@resdate">
-            <InputDate @bind-Value="@resdate" @bind-Value:format="dd/MM/yyyy" />
-        </EditForm>
-        Time
-        <br />
-        <input type="time" name="Reservation Time" min="09:00" max="21:00" @bind="restime" @bind:event="oninput" />
-        <br /> E-Mail
-        <br /><input placeholder="example@email.com" @bind="email" @bind:event="oninput" type="text" />
-        <br /> Phone Number
-        <br /><input placeholder="(000)111-2222" @bind="phonenum" @bind:event="oninput" type="text" />
-    </p>
-
-
+<table class="table">
+    <thead>
+        <tr>
+            <th>Party Size</th>
+            <th>Booking Date and Time</th>
+            <th>Contact E-mail</th>
+            <th>Contact Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in ress)
+        {
+            <tr>
+                <td>@booking.party</td>
+                <td>@booking.bookingDateTime.Date</td>
+                <td>@booking.cemail</td>
+                <td>@booking.cphone</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<button class="btn btn-primary" @onclick="loadRes">See Reservations</button>
 @code {
     private int currentCount = 0;
     int groupSize;
     string email;
     string phonenum;
     TimeSpan restime;
+    IList<ResItem> ress = new List<ResItem>();
 
     DateTime resdate { get; set; } = DateTime.Today;
 
@@ -44,5 +62,15 @@
     private void IncrementCount()
     {
         currentCount += IncrementAmount;
+    }
+
+    private void saveRes()
+    {
+        //save the reservations
+    }
+    private void loadRes()
+    {
+        //show all the reservations
+        ress.Add(new ResItem { party = 4, bookingDateTime = DateTime.Now, cemail = "boy@case.edu", cphone = "(111)222-333" });
     }
 }
