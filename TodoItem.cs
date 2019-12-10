@@ -13,6 +13,12 @@ namespace BlazorTest.Shared
 
         protected IList<TodoItem> todos = new List<TodoItem>();
         protected string newTodo;
+        protected int revenue;
+        protected int expense;
+        protected string revname;
+        protected string expname;
+        protected int rev;
+        protected int exp;
 
         protected void AddTodo()
         {
@@ -21,6 +27,35 @@ namespace BlazorTest.Shared
                 todos.Add(new TodoItem { Title = newTodo });
                 newTodo = string.Empty;
             }
+        }
+
+        protected void getTotalRev()
+        {
+
+        }
+
+        protected void getTotalExp()
+        {
+
+        }
+        protected void getLargestRev()
+        {
+
+        }
+
+        protected void getLargestExp()
+        {
+
+        }
+
+        protected void addRevenue()
+        {
+
+        }
+
+        protected void addExpense()
+        {
+
         }
     }
 }

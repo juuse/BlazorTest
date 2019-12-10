@@ -2,25 +2,12 @@
 
 @inherits FoodStuff
 
+
 <img src="https://i.imgur.com/KaFC9Jd.png" alt="Undercooked Logo">
 
 <h1>Welcome to Undercooked!</h1>
 A simple restauraunt management system.
 
-<!--<Counter IncrementAmount ="10"/>
-
-<ul>
-    @foreach (var food in ings)
-    {
-        <li>
-            @food.IngredientID
-            @food.IngredientName
-            @food.count
-        </li>
-    }
-
-</ul>
-    -->
 @if (ings == null)
 {
     <p><em>Loading...</em></p>
@@ -47,4 +34,44 @@ else
         </tbody>
     </table>
 }
-    <button class="btn btn-primary" @onclick="populateList">Creates List</button>
+<button class="btn btn-primary" @onclick="PopulateList">See Inventory</button>
+<br />
+<br />Restock Amount
+<br />
+<input @bind="restockquant" @bind:event="oninput" type="number" />
+<br />
+<button class="btn btn-primary" @onclick="@Restock">Restock</button>
+<br />
+<br />
+<button class="btn btn-primary" @onclick="@Dispose">Dispose</button>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>DishID</th>
+            <th>Dish Name</th>
+            <th>Price</th>
+            <th>Time to Cook</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dish in dishes)
+        {
+            <tr>
+                <td>@dish.DishID</td>
+                <td>@dish.DishName</td>
+                <td>@dish.Price</td>
+                <td>@dish.Preptime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-primary" @onclick="PopulateDishes">See Dishes</button>
+<br />
+<input type="number" @bind="pricecheck" @bind:event="oninput" />
+<button class="btn btn-primary" @onclick="expensiveIngredientDishes">Check Expensive Ingredients</button>
+<br />
+<input type="text" @bind="namecheck" @bind:event="oninput" />
+<button class="btn btn-primary" @onclick="SearchDish">Find Dish</button>
+
+

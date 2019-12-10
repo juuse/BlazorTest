@@ -1,8 +1,8 @@
 ﻿@page "/management"
 @inherits TodoItem
 
-<h1>Management (@todos.Count(todo => !todo.IsDone))</h1>
-
+<h1>Management <!--(@todos.Count(todo => !todo.IsDone))--></h1>
+<!--
 <ul>
     @foreach (var todo in todos)
     {
@@ -15,14 +15,26 @@
 </ul>
 
 <input placeholder="Something todo" @bind="newTodo" />
-<button @onclick="AddTodo">Add todo</button>
-<ul>
-    <button>Total Revenue</button>
-    <button>Total Expenses</button>
-    <output placeholder="blank" />
-</ul>
+<button @onclick="AddTodo">Add todo</button>-->
+
+<br />
+<button class="btn btn-primary" @onclick="getTotalRev">Total Revenue</button><p>Total Revenue: @revenue</p>
+<button class="btn btn-primary" @onclick="getTotalExp">Total Expenses</button> <p>Total Expense: @expense</p>
+<br />
+<button class="btn btn-primary" @onclick="getLargestRev">Largest Revenue</button> <p>Largest Revenue: @revenue</p>
+<button class="btn btn-primary" @onclick="getLargestExp">Largest Expense</button> <p>Largest Expense: @expense</p>
+<br />
+
+<input type="text" placeholder="Revenue Name" @bind="revname" @bind:event="oninput" />
+<input type="number" @bind="rev" @bind:event="oninput" />
+<button class="btn btn-primary" @onclick="addRevenue">Add Revenue</button>
+<br />
+<input type="text" placeholder="Expense Name" @bind="expname" @bind:event="oninput" />
+<input type="number" @bind="exp" @bind:event="oninput" />
+<button class="btn btn-primary" @onclick="addExpense">Add Expense</button>
+<br />
 
 
 @code {
-   
+
 }
